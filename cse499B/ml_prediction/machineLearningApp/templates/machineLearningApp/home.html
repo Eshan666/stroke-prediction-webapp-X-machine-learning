@@ -1,0 +1,71 @@
+{% extends 'machineLearningApp/base.html'%}
+{% block content %}
+    <div class="container my-4">
+        <h1>Input your values to make predictions</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Age</label>
+                <input type="text" class="form-control" name="age" id="formGroupExampleInput"
+                    placeholder="">
+            </div>
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Hypertension</label>
+                <input type="text" name="hypertension" class="form-control" id="formGroupExampleInput2"
+                    placeholder="">
+            </div>
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Heart Disease</label>
+                <input type="text" name="heart_disease" class="form-control" id="formGroupExampleInput"
+                    placeholder="">
+            </div>
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Average Glucose level</label>
+                <input type="text" name="glucose" class="form-control" id="formGroupExampleInput2" placeholder="">
+            </div>
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">BMI</label>
+                <input type="text" name="bmi" class="form-control" id="formGroupExampleInput" placeholder="">
+            </div>
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Gender</label>
+                <input type="text" name="gender" class="form-control" id="formGroupExampleInput2"
+                    placeholder="">
+            </div>
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Marital Status</label>
+                <input type="text" name="married" class="form-control" id="formGroupExampleInput"
+                    placeholder="">
+            </div>
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Work Type</label>
+                <input type="text" name="workType" class="form-control" id="formGroupExampleInput2"
+                    placeholder="">
+            </div>
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Residence Type</label>
+                <input type="text" name="residence" class="form-control" id="formGroupExampleInput"
+                    placeholder="">
+            </div>
+
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Smoking Status</label>
+                <input type="text" name="Smoking" class="form-control" id="formGroupExampleInput2"
+                    placeholder="">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <h3>your result is {{result}}</h3>
+        
+    </div>
+
+    {% endblock %}
