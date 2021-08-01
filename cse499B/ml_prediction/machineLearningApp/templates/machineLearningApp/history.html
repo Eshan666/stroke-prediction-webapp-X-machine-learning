@@ -1,0 +1,54 @@
+{% extends 'machineLearningApp/base.html'%}
+{% block content %}
+
+<div class="container">
+  <h1>All prediction history</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Age</th>
+        <th scope="col">Hypertension</th>
+        <th scope="col">Heart Disease</th>
+        <th scope="col">Glucose Level</th>
+        <th scope="col">BMI</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Marital Status</th>
+        <th scope="col">Work Type</th>
+        <th scope="col">Residence</th>
+        
+        <th scope="col">Status</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for record in records %}
+      <tr>
+        
+        <td><button type="button" class="btn btn-light">{{record.age}}</button></td>
+        <td><button type="button" class="btn btn-light">{{record.hypertension}}</button></td>
+        <td><button type="button" class="btn btn-light">{{record.heartDisease}}</button></td>
+        <td><button type="button" class="btn btn-light">{{record.glucose}}</button></td>
+        <td><button type="button" class="btn btn-light">{{record.bmi}}</button></td>
+        <td><button type="button" class="btn btn-light">{{record.gender}}</button></td>
+        <td><button type="button" class="btn btn-light">{{record.married}}</button></td>
+        <td><button type="button" class="btn btn-light">{{record.workType}}</button></td>
+        <td><button type="button" class="btn btn-light">{{record.Residence}}</button></td>
+
+        {% if record.result == 1 %}
+        <td><button type="button" class="btn btn-danger">Unsafe</button></td>
+        {% elif record.result == 0 %}
+        <td><button type="button" class="btn btn-success">Safe</button></td>
+        {% endif %}
+        
+    
+        <td><button type="button" class="btn btn-secondary">{{record.date_created}}</button></td>
+        
+      </tr>
+      {% endfor %}
+     
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}

@@ -1,3 +1,4 @@
+import contextlib
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from .forms import CreateUserForm
@@ -30,7 +31,8 @@ def home(request):
         model = joblib.load('trained_model.joblib')
         pipeline = joblib.load('pipeline')  
 
-        prep_data = pipeline.transform([[age,hypertension,heart_disease,glucose,bmi,gender,married,workType,residence,smoking]])
+        prep_data = pipeline.transform([[age,hypertension,heart_disease,
+        glucose,bmi,gender,married,workType,residence,smoking]])
         result = model.predict(prep_data)[0]
 
         dataset = Dataset(patient=request.user,
@@ -48,6 +50,13 @@ def home(request):
          )
 
         dataset.save()
+        if result == 1:
+            messages.info(request,"You have high chance of having a stroke!Please consult a doctor immediately")
+      
+        elif result == 0:
+            messages.info(request,"It seems like you are safe! Keep it up")
+
+
 
         context = {
             "result" : result
@@ -88,3 +97,16 @@ def signUpPage(request):
             form.save()
     context = {'form' : form }
     return render(request,'machineLearningApp/signup.html',context)
+
+
+
+def historyPage(request):
+    records = Dataset.objects.filter(patient = request.user)
+    context = { "records" : records }
+
+    return render(request,'machineLearningApp/history.html',context)
+
+def logOutPage(request):
+    
+    logout(request)
+    return redirect('signInPage')

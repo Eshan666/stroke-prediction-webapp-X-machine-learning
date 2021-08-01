@@ -1,5 +1,22 @@
 {% extends 'machineLearningApp/base.html'%}
 {% block content %}
+
+{% for message in messages %}
+
+{% if result == 0 %}
+<div class="alert alert-success" role="alert">
+    {{message}}
+  </div>
+  {% endif %}
+
+
+  {% if result == 1 %}
+  <div class="alert alert-danger" role="alert">
+      {{message}}
+    </div>
+    {% endif %}
+
+{% endfor %}
     <div class="container my-4">
         <h1>Input your values to make predictions</h1>
         <form method="POST" action="">
@@ -64,7 +81,7 @@
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        <h3>your result is {{result}}</h3>
+       
         
     </div>
 

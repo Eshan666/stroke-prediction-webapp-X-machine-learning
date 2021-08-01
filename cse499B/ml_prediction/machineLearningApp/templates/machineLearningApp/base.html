@@ -25,12 +25,23 @@
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="#">Home</a>
               </li>
+              {% if not request.user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{% url 'signInPage' %}">Sign In</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{% url 'signUpPage' %}">Sign Up</a>
               </li>
+              {% endif %}
+
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'historyPage' %}">View History</a>
+              </li>
+              {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'logOutPage' %}">Logout</a>
+              </li>
+              {% endif %}
               
               <li class="nav-item">
                 <a class="nav-link mx-5" aria-current="page" href="#"><h5>Hello,{{request.user}}</h5></a>
@@ -38,10 +49,7 @@
               
               
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            
           </div>
         </div>
       </nav>
